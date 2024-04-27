@@ -5,7 +5,7 @@ class EditLandPage extends StatefulWidget {
  final LandRecord record;
  final Function(LandRecord) onUpdate;
 
- EditLandPage({required this.record, required this.onUpdate});
+ const EditLandPage({super.key, required this.record, required this.onUpdate});
 
  @override
  _EditLandPageState createState() => _EditLandPageState();
@@ -43,7 +43,7 @@ class _EditLandPageState extends State<EditLandPage> {
  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit Land Record'),
+        title: const Text('Edit Land Record'),
       ),
       body: Form(
         key: _formKey,
@@ -51,23 +51,23 @@ class _EditLandPageState extends State<EditLandPage> {
           children: <Widget>[
             TextFormField(
               controller: _landNameController,
-              decoration: InputDecoration(labelText: 'Nama Lahan'),
+              decoration: const InputDecoration(labelText: 'Nama Lahan'),
             ),
              TextFormField(
               controller: _addressController,
-              decoration: InputDecoration(labelText: 'Alamat Lahan'),
+              decoration: const InputDecoration(labelText: 'Alamat Lahan'),
             ),
             TextFormField(
               controller: _areaSizeController,
-              decoration: InputDecoration(labelText: 'Luas Area Lahan'),
+              decoration: const InputDecoration(labelText: 'Luas Area Lahan'),
             ),
             TextFormField(
               controller: _ownershipCertificateController,
-              decoration: InputDecoration(labelText: 'Nomor Sertifikat Hak Milik'),
+              decoration: const InputDecoration(labelText: 'Nomor Sertifikat Hak Milik'),
             ),
             TextFormField(
               controller: _ispoCertificateController,
-              decoration: InputDecoration(labelText: 'Nomor Sertifikat ISPO'),
+              decoration: const InputDecoration(labelText: 'Nomor Sertifikat ISPO'),
             ),
             ElevatedButton(
               onPressed: () {
@@ -82,7 +82,7 @@ class _EditLandPageState extends State<EditLandPage> {
                  Navigator.pop(context);
                 }
               },
-              child: Text('Update'),
+              child: const Text('Update'),
             ),
           ],
         ),

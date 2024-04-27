@@ -6,7 +6,7 @@ import 'edit_land.dart'; // Import the EditLandPage
 class LandRecordsPage extends StatefulWidget {
  final List<LandRecord> landRecords;
 
- LandRecordsPage({required this.landRecords});
+ const LandRecordsPage({super.key, required this.landRecords});
 
  @override
  _LandRecordsPageState createState() => _LandRecordsPageState();
@@ -17,7 +17,7 @@ class _LandRecordsPageState extends State<LandRecordsPage> {
  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Land Records'),
+        title: const Text('Land Records'),
       ),
       body: ListView.builder(
         itemCount: widget.landRecords.length,
@@ -30,7 +30,7 @@ class _LandRecordsPageState extends State<LandRecordsPage> {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 IconButton(
-                 icon: Icon(Icons.edit),
+                 icon: const Icon(Icons.edit),
                  onPressed: () {
                     Navigator.push(
                       context,
@@ -50,7 +50,7 @@ class _LandRecordsPageState extends State<LandRecordsPage> {
                  },
                 ),
                 IconButton(
-                 icon: Icon(Icons.delete),
+                 icon: const Icon(Icons.delete),
                  onPressed: () {
                     // Remove the record from the list
                     setState(() {

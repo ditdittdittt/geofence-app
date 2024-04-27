@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'database_helper.dart';
 import 'editprofile.dart';
 import 'profile_data.dart';
 
 class ProfileDisplayPage extends StatefulWidget {
+  const ProfileDisplayPage({super.key});
+
   @override
   _ProfileDisplayPageState createState() => _ProfileDisplayPageState();
 }
@@ -13,7 +14,7 @@ class _ProfileDisplayPageState extends State<ProfileDisplayPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profile Data'),
+        title: const Text('Profile Data'),
       ),
       body: ListView.builder(
         itemCount: ProfileData.profiles.length,
@@ -31,7 +32,7 @@ class _ProfileDisplayPageState extends State<ProfileDisplayPage> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 IconButton(
-                  icon: Icon(Icons.edit),
+                  icon: const Icon(Icons.edit),
                   onPressed: () async {
                     Map<String, String?> profileData = {
                       'name': ProfileData.profiles[index]['name'],
@@ -52,7 +53,7 @@ class _ProfileDisplayPageState extends State<ProfileDisplayPage> {
                   },
                 ),
                 IconButton(
-                  icon: Icon(Icons.delete),
+                  icon: const Icon(Icons.delete),
                   onPressed: () {
                     ProfileData.deleteProfile(index);
                     setState(() {});

@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'profile_page.dart'; // Import the profile page
 import 'land_page.dart'; // Import the land page
-import 'addlandpage.dart'; // Import the land page
+// Import the land page
 import 'land_records_page.dart';
-import 'database_helper.dart'; // Import your DatabaseHelper
+// Import your DatabaseHelper
 
-void main() {
-  runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,74 +22,74 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(
-          leading: FlutterLogo(
+          leading: const FlutterLogo(
             size: 20,
           ),
-          backgroundColor: Color(0xFF4287f5),
-          title: Text("Geofence App"),
+          backgroundColor: const Color(0xFF4287f5),
+          title: const Text("Geofence App"),
           centerTitle: false,
         ),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Builder(
                 builder: (BuildContext context) {
                   return ElevatedButton(
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LandRecordsPage(landRecords: [],)),
+                        MaterialPageRoute(builder: (context) => const LandRecordsPage(landRecords: [],)),
                       );
                     },
-                    child: Text("Profile Kebun"),
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(0),
                       ),
-                      fixedSize: Size(200, 50),
+                      fixedSize: const Size(200, 50),
                     ),
+                    child: const Text("Profile Kebun"),
                   );
                 },
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Builder(
                 builder: (BuildContext context) {
                   return ElevatedButton(
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LandPage()),
+                        MaterialPageRoute(builder: (context) => const LandPage()),
                       );
                     },
-                    child: Text("Tambah Kebun"),
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(0),
                       ),
-                      fixedSize: Size(200, 50),
+                      fixedSize: const Size(200, 50),
                     ),
+                    child: const Text("Tambah Kebun"),
                   );
                 },
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Builder(
                 builder: (BuildContext context) {
                   return ElevatedButton(
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => ProfilePage()),
+                        MaterialPageRoute(builder: (context) => const ProfilePage()),
                       );
                     },
-                    child: Text("Profile"),
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(0),
                       ),
-                      fixedSize: Size(200, 50),
+                      fixedSize: const Size(200, 50),
                     ),
+                    child: const Text("Profile"),
                   );
                 },
               ),

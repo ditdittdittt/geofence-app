@@ -1,11 +1,12 @@
 import 'dart:async';
-import 'dart:io';
 import 'package:geocoding/geocoding.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 
 class MapSelectionPage extends StatefulWidget {
+  const MapSelectionPage({super.key});
+
   @override
   _MapSelectionPageState createState() => _MapSelectionPageState();
 }
@@ -36,7 +37,7 @@ class _MapSelectionPageState extends State<MapSelectionPage> {
       setState(() {
         currentLocation = LatLng(position.latitude, position.longitude);
         markers.add(Marker(
-          markerId: MarkerId('userLocation'),
+          markerId: const MarkerId('userLocation'),
           position: currentLocation!, // Use the currentLocation variable here
         ));
       });
@@ -59,7 +60,7 @@ class _MapSelectionPageState extends State<MapSelectionPage> {
 Future<String> _getAddressFromCoordinates(double latitude, double longitude) async {
   try {
     List<Placemark> placemarks = await placemarkFromCoordinates(latitude, longitude);
-    Placemark place = placemarks.isNotEmpty ? placemarks[0] : Placemark();
+    Placemark place = placemarks.isNotEmpty ? placemarks[0] : const Placemark();
     return "${place.name ?? ''}, ${place.subLocality ?? ''}, ${place.locality ?? ''}, ${place.postalCode ?? ''}, ${place.country ?? ''}";
   } catch (e) {
     print("Error getting address: $e");
@@ -72,7 +73,7 @@ Future<String> _getAddressFromCoordinates(double latitude, double longitude) asy
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Select Location'),
+        title: const Text('Select Location'),
       ),
       body: Stack(
         children: [
@@ -94,10 +95,10 @@ Future<String> _getAddressFromCoordinates(double latitude, double longitude) asy
       floatingActionButton: FloatingActionButton.extended(
       onPressed: () async {
   if (currentLocation != null) {
-    final message =
+    const message =
         'Selected location is approximate due to limited geolocation API accuracy.';
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
+      const SnackBar(
         content: Text(message),
         duration: Duration(seconds: 3),
       ),
@@ -115,8 +116,8 @@ Future<String> _getAddressFromCoordinates(double latitude, double longitude) asy
   }
 },
 
-        label: Text('Confirm Location (Limited Accuracy)'),
-        icon: Icon(Icons.check),
+        label: const Text('Confirm Location (Limited Accuracy)'),
+        icon: const Icon(Icons.check),
       ),
     );
   }

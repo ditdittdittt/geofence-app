@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'database_helper.dart'; // Import your database helper
+// Import your database helper
 
 // EditProfilePage.dart
 class EditProfilePage extends StatefulWidget {
   final Map<String, String?> profileData;
 
-  EditProfilePage({required this.profileData});
+  const EditProfilePage({super.key, required this.profileData});
 
   @override
   _EditProfilePageState createState() => _EditProfilePageState();
@@ -27,15 +27,15 @@ class _EditProfilePageState extends State<EditProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Edit Profile')),
+      appBar: AppBar(title: const Text('Edit Profile')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            TextField(controller: _nameController, decoration: InputDecoration(labelText: 'Name')),
-            TextField(controller: _roleController, decoration: InputDecoration(labelText: 'Role')),
-            TextField(controller: _addressController, decoration: InputDecoration(labelText: 'Address')),
+            TextField(controller: _nameController, decoration: const InputDecoration(labelText: 'Name')),
+            TextField(controller: _roleController, decoration: const InputDecoration(labelText: 'Role')),
+            TextField(controller: _addressController, decoration: const InputDecoration(labelText: 'Address')),
             ElevatedButton(
               onPressed: () {
                 Navigator.pop(context, {
@@ -44,7 +44,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   'address': _addressController.text,
                 });
               },
-              child: Text('Save'),
+              child: const Text('Save'),
             ),
           ],
         ),

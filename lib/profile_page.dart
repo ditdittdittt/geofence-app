@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:sqflite/sqflite.dart';
-import 'package:path/path.dart';
 import 'database_helper.dart'; // Import the land page
 import 'profiledisplay.dart';
-import 'profile_data.dart';
 
 
 class ProfilePage extends StatefulWidget {
+  const ProfilePage({super.key});
+
  @override
  _ProfilePageState createState() => _ProfilePageState();
 }
@@ -29,7 +28,7 @@ class _ProfilePageState extends State<ProfilePage> {
  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profile Page'),
+        title: const Text('Profile Page'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -39,7 +38,7 @@ class _ProfilePageState extends State<ProfilePage> {
             children: <Widget>[
               TextFormField(
                 controller: _nameController,
-                decoration: InputDecoration(labelText: 'Nama'),
+                decoration: const InputDecoration(labelText: 'Nama'),
                 validator: (value) {
                  if (value == null || value.isEmpty) {
                     return 'Please enter your name';
@@ -49,7 +48,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               TextFormField(
                 controller: _roleController,
-                decoration: InputDecoration(labelText: 'Role'),
+                decoration: const InputDecoration(labelText: 'Role'),
                 validator: (value) {
                  if (value == null || value.isEmpty) {
                     return 'Please enter your role';
@@ -59,7 +58,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               TextFormField(
                 controller: _addressController,
-                decoration: InputDecoration(labelText: 'Alamat'),
+                decoration: const InputDecoration(labelText: 'Alamat'),
                 validator: (value) {
                  if (value == null || value.isEmpty) {
                     return 'Please enter your address';
@@ -80,11 +79,11 @@ class _ProfilePageState extends State<ProfilePage> {
                       _insertProfile(context, name, role, address);
 
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Processing Data')),
+                        const SnackBar(content: Text('Processing Data')),
                       );
                     }
                  },
-                 child: Text('Submit'),
+                 child: const Text('Submit'),
                 ),
               ),
             ],
@@ -96,27 +95,17 @@ class _ProfilePageState extends State<ProfilePage> {
 
 Future<void> _insertProfile(BuildContext context, String name, String role, String address) async {
   try {
-    // Access the database
-    final db = await DatabaseHelper.database;
-
-    Map<String, dynamic> profile = {
-      'name': name,
-      'role': role,
-      'address': address,
-    };
-
-    // Insert the data into the database
-    await db.insert(DatabaseHelper.profileTable, profile);
+    await DatabaseHelper.insertProfile(context, name, role, address);
     print('Data inserted successfully');
 
     // Navigate to the new page after data insertion
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => ProfileDisplayPage()),
+      MaterialPageRoute(builder: (context) => const ProfileDisplayPage()),
     );
 
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Data Saved Successfully')),
+      const SnackBar(content: Text('Data Saved Successfully')),
     );
   } catch (error) {
     print('Error inserting data: $error');

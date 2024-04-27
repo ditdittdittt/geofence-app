@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:location/location.dart' as loc; // Alias added
+// Alias added
 
 class UkurKebun extends StatefulWidget {
+  const UkurKebun({super.key});
+
   @override
   _UkurKebunState createState() => _UkurKebunState();
 }
@@ -146,7 +148,7 @@ class _UkurKebunState extends State<UkurKebun> {
                     "LuasKebun": _area
                   });
                 },
-                icon: Icon(
+                icon: const Icon(
                   CupertinoIcons.doc,
                   color: Colors.blue,
                   size: 22,
@@ -159,7 +161,7 @@ class _UkurKebunState extends State<UkurKebun> {
                 onPressed: () {
                   _clearMarkersAndPolygon();
                 },
-                icon: Icon(
+                icon: const Icon(
                   CupertinoIcons.trash,
                   color: Colors.red,
                   size: 20,
@@ -283,7 +285,7 @@ class _UkurKebunState extends State<UkurKebun> {
 
   void _updatePolygon() {
     setState(() {
-      final polygonId = PolygonId('polygon');
+      const polygonId = PolygonId('polygon');
       final polygon = Polygon(
         polygonId: polygonId,
         points: polygonPoints,

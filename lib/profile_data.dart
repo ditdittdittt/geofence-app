@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-import 'profiledisplay.dart';
 
 class ProfileData {
  static List<Map<String, dynamic>> profiles = [];

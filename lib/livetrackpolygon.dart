@@ -7,6 +7,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class PolygonLiveTracking extends StatefulWidget {
+  const PolygonLiveTracking({super.key});
+
   @override
   _PolygonLiveTrackingState createState() => _PolygonLiveTrackingState();
 }
@@ -182,7 +184,7 @@ class _PolygonLiveTrackingState extends State<PolygonLiveTracking> {
                 Navigator.pop(context,
                     {"PolygonsCoordinate": polygonPoints, "LuasKebun": _area});
               },
-              icon: Icon(
+              icon: const Icon(
                 CupertinoIcons.doc,
                 color: Colors.blue,
                 size: 22,
@@ -219,7 +221,7 @@ class _PolygonLiveTrackingState extends State<PolygonLiveTracking> {
               ),
             ),
           ),
-          Container(
+          SizedBox(
             height: 20,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -300,7 +302,7 @@ class _PolygonLiveTrackingState extends State<PolygonLiveTracking> {
                   onTap: _addMaker,
                   child: Column(
                     children: [
-                      Icon(CupertinoIcons.placemark),
+                      const Icon(CupertinoIcons.placemark),
                       Text(
                         'Tambah Tanda',
                         style: GoogleFonts.poppins(
@@ -422,7 +424,7 @@ class _PolygonLiveTrackingState extends State<PolygonLiveTracking> {
   }
 
   void _startTracking() {
- final LocationSettings locationSettings = LocationSettings(
+ const LocationSettings locationSettings = LocationSettings(
     accuracy: LocationAccuracy.bestForNavigation,
     distanceFilter: 5,
  );
@@ -435,7 +437,7 @@ class _PolygonLiveTrackingState extends State<PolygonLiveTracking> {
       ));
 
       polylines.add(Polyline(
-        polylineId: PolylineId("poly"),
+        polylineId: const PolylineId("poly"),
         color: Colors.red,
         width: 5,
         points: polylineCoordinates,
@@ -449,7 +451,7 @@ class _PolygonLiveTrackingState extends State<PolygonLiveTracking> {
     if (polylineCoordinates.length >= 3) {
       final List<LatLng> polygonPoints = List.from(polylineCoordinates);
 
-      final PolygonId polygonId = PolygonId("polygon");
+      const PolygonId polygonId = PolygonId("polygon");
       final Polygon polygon = Polygon(
         polygonId: polygonId,
         points: polygonPoints,

@@ -10,6 +10,8 @@ import 'land_records_page.dart';
 import 'map_selection.dart';
 
 class LandPage extends StatefulWidget {
+  const LandPage({super.key});
+
  @override
  _LandPageState createState() => _LandPageState();
 }
@@ -75,14 +77,14 @@ Future<void> _insertLand(String landName, String address, String areaSize, Strin
 
  void _addMarkers() {
    // Example markers
-   Marker marker1 = Marker(
+   Marker marker1 = const Marker(
      markerId: MarkerId('marker_1'),
      position: LatLng(-6.967660903930664, 107.6590805053711),
      infoWindow: InfoWindow(title: 'Marker 1'),
      draggable: true,
    );
 
-   Marker marker2 = Marker(
+   Marker marker2 = const Marker(
      markerId: MarkerId('marker_2'),
      position: LatLng(-6.967, 107.66),
      infoWindow: InfoWindow(title: 'Marker 2'),
@@ -96,7 +98,7 @@ Future<void> _insertLand(String landName, String address, String areaSize, Strin
  Widget build(BuildContext context) {
    return Scaffold(
      appBar: AppBar(
-       title: Text('Land Page'),
+       title: const Text('Land Page'),
      ),
      body: Padding(
        padding: const EdgeInsets.all(16.0),
@@ -108,7 +110,7 @@ Future<void> _insertLand(String landName, String address, String areaSize, Strin
                  mapController = controller;
                  _getCurrentLocation();
                },
-               initialCameraPosition: CameraPosition(
+               initialCameraPosition: const CameraPosition(
                  target: LatLng(0, 0), // Default location, will be updated with user's location
                  zoom: 11.0,
                ),
@@ -130,16 +132,16 @@ Future<void> _insertLand(String landName, String address, String areaSize, Strin
                        onPressed: () {
                          Navigator.push(
                            context,
-                           MaterialPageRoute(builder: (context) => UkurKebun()), // Changed to MapsPage
+                           MaterialPageRoute(builder: (context) => const UkurKebun()), // Changed to MapsPage
                          );
-                       },
-                       child: Text("Ukur Lahan Manual"), // Changed text to "Ukur Lahan"
+                       }, // Changed text to "Ukur Lahan"
                        style: ElevatedButton.styleFrom(
                          shape: RoundedRectangleBorder(
                            borderRadius: BorderRadius.circular(0),
                          ),
-                         fixedSize: Size(200, 50),
+                         fixedSize: const Size(200, 50),
                        ),
+                       child: const Text("Ukur Lahan Manual"),
                      );
                    },
                  ),
@@ -150,16 +152,16 @@ Future<void> _insertLand(String landName, String address, String areaSize, Strin
                        onPressed: () {
                          Navigator.push(
                            context,
-                           MaterialPageRoute(builder: (context) => PolygonLiveTracking()), // Changed to MapsPage
+                           MaterialPageRoute(builder: (context) => const PolygonLiveTracking()), // Changed to MapsPage
                          );
                        },
-                       child: Text("Ukur Lahan Tracking"),
                        style: ElevatedButton.styleFrom(
                          shape: RoundedRectangleBorder(
                            borderRadius: BorderRadius.circular(0),
                        ),
-                       fixedSize: Size(200, 50),
+                       fixedSize: const Size(200, 50),
                        ),
+                       child: const Text("Ukur Lahan Tracking"),
                       );
                      },
                     ),
@@ -167,7 +169,7 @@ Future<void> _insertLand(String landName, String address, String areaSize, Strin
                  ),
                  TextFormField(
                    controller: _landNameController,
-                   decoration: InputDecoration(labelText: 'Nama Lahan*'),
+                   decoration: const InputDecoration(labelText: 'Nama Lahan*'),
                    validator: (value) {
                      if (value == null || value.isEmpty) {
                        return 'Please enter the land address';
@@ -182,12 +184,12 @@ TextFormField(
   decoration: InputDecoration(
     labelText: 'Alamat Lahan*',
     suffixIcon: IconButton(
-      icon: Icon(Icons.map),
+      icon: const Icon(Icons.map),
       onPressed: () async {
         // Navigate to the map selection screen
         final result = await Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => MapSelectionPage()),
+          MaterialPageRoute(builder: (context) => const MapSelectionPage()),
         );
 
         if (result != null) {
@@ -195,9 +197,9 @@ TextFormField(
           _addressController.text = result['address'];
           // Add a marker to the map at the selected location
           markers.add(Marker(
-            markerId: MarkerId('selectedLocation'),
+            markerId: const MarkerId('selectedLocation'),
             position: LatLng(result['latitude'], result['longitude']),
-            infoWindow: InfoWindow(title: 'Selected Location'),
+            infoWindow: const InfoWindow(title: 'Selected Location'),
           ));
           setState(() {});
         }
@@ -209,7 +211,7 @@ TextFormField(
 
                 TextFormField(
                   controller: _areaSizeController,
-                  decoration: InputDecoration(labelText: 'Luas Area Lahan*'),
+                  decoration: const InputDecoration(labelText: 'Luas Area Lahan*'),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter the land area size';
@@ -219,7 +221,7 @@ TextFormField(
                   ),
                 TextFormField(
                   controller: _ownershipCertificateController,
-                  decoration: InputDecoration(labelText: 'Nomor Sertifikat Hak Milik*'),
+                  decoration: const InputDecoration(labelText: 'Nomor Sertifikat Hak Milik*'),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter the ownership certificate number';
@@ -229,7 +231,7 @@ TextFormField(
                   ),
                 TextFormField(
                   controller: _ispoCertificateController,
-                  decoration: InputDecoration(labelText: 'Nomor Sertifikat ISPO*'),
+                  decoration: const InputDecoration(labelText: 'Nomor Sertifikat ISPO*'),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter the ISPO certificate number';
@@ -252,7 +254,7 @@ TextFormField(
                          _createLandRecord(landName, address, areaSize, ownershipCertificate, ispoCertificate);
 
                          ScaffoldMessenger.of(context).showSnackBar(
-                           SnackBar(content: Text('Land record added')),
+                           const SnackBar(content: Text('Land record added')),
                          );
                             // Navigate to the LandRecordsPage
                            Navigator.push(
@@ -263,7 +265,7 @@ TextFormField(
                            );
                        }
                      },
-                     child: Text('Submit'),
+                     child: const Text('Submit'),
                    ),
                  ),
                ],
@@ -279,7 +281,7 @@ TextFormField(
    Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
    setState(() {
      markers.add(Marker(
-       markerId: MarkerId('userLocation'),
+       markerId: const MarkerId('userLocation'),
        position: LatLng(position.latitude, position.longitude),
      ));
      // Update camera position to focus on the user's current location
